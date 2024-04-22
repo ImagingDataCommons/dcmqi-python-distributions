@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2024.03.10
+_src_path: gh:scientific-python/cookie
+backend: skbuild
+email: lnuernberg@bwh.harvard.edu
+full_name: Leonard Nürnberg
+license: MIT
+org: ImagingDataCommons
+project_name: 'dcmqi-python-distributions'
+project_short_description: Python distribution of the DCMQI library collection.
+url: 'https://github.com/ImagingDataCommons/dcmqi-python-distributions'
+vcs: true
