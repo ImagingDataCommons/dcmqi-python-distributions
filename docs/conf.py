@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import importlib.metadata
 
-project = "dcmqi-python-distributions"
+project = "dcmqi"
 copyright = "2024, Leonard Nürnberg"
 author = "Leonard Nürnberg"
-version = release = importlib.metadata.version("dcmqi_python_distributions ")
+version = release = importlib.metadata.version("dcmqi")
 
 extensions = [
     "myst_parser",

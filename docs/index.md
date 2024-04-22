@@ -1,4 +1,4 @@
-# dcmqi-python-distributions
+# dcmqi
 
 ```{toctree}
 :maxdepth: 2

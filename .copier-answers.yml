@@ -6,7 +6,7 @@ email: lnuernberg@bwh.harvard.edu
 full_name: Leonard Nürnberg
 license: MIT
 org: ImagingDataCommons
-project_name: 'dcmqi-python-distributions'
+project_name: "dcmqi"
 project_short_description: Python distribution of the DCMQI library collection.
-url: 'https://github.com/ImagingDataCommons/dcmqi-python-distributions'
+url: "https://github.com/ImagingDataCommons/dcmqi-python-distributions"
 vcs: true

@@ -71,7 +71,7 @@ pytest
 Use pytest-cov to generate coverage reports:
 
 ```bash
-pytest --cov=dcmqi-python-distributions
+pytest --cov=dcmqi
 ```
 
 # Building docs

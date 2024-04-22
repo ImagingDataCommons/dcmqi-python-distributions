@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 
 [project]
-name = "dcmqi-python-distributions"
+name = "dcmqi"
 authors = [
   { name = "Leonard Nürnberg", email = "lnuernberg@bwh.harvard.edu" },
 ]
@@ -56,15 +56,23 @@ Discussions = "https://github.com/ImagingDataCommons/dcmqi-python-distributions/
 Changelog = "https://github.com/ImagingDataCommons/dcmqi-python-distributions/releases"
 
 
+[project.scripts]
+itkimage2segimage = "dcmqi:itkimage2segimage"
+segimage2itkimage = "dcmqi:segimage2itkimage"
+tid1500writer = "dcmqi:tid1500writer"
+tid1500reader = "dcmqi:tid1500reader"
+itkimage2paramap = "dcmqi:itkimage2paramap"
+paramap2itkimage = "dcmqi:paramap2itkimage"
+
 [tool.scikit-build]
 minimum-version = "0.4"
 build-dir = "build/{wheel_tag}"
 metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
-sdist.include = ["src/dcmqi_python_distributions /_version.py"]
+sdist.include = ["src/dcmqi/_version.py"]
 
 
 [tool.setuptools_scm]
-write_to = "src/dcmqi_python_distributions /_version.py"
+write_to = "src/dcmqi/_version.py"
 
 
 [tool.cibuildwheel]
@@ -87,7 +95,7 @@ testpaths = [
 
 
 [tool.coverage]
-run.source = ["dcmqi_python_distributions "]
+run.source = ["dcmqi"]
 report.exclude_also = [
   '\.\.\.',
   'if typing.TYPE_CHECKING:',
@@ -104,7 +112,7 @@ disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
 [[tool.mypy.overrides]]
-module = "dcmqi_python_distributions .*"
+module = "dcmqi.*"
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
@@ -143,7 +151,7 @@ ignore = [
 ]
 isort.required-imports = ["from __future__ import annotations"]
 # Uncomment if using a _compat.typing backport
-# typing-modules = ["dcmqi_python_distributions ._compat.typing"]
+# typing-modules = ["dcmqi._compat.typing"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["T20"]
@@ -153,7 +161,7 @@ isort.required-imports = ["from __future__ import annotations"]
 [tool.pylint]
 py-version = "3.8"
 ignore-paths = [".*/_version.py"]
-extension-pkg-allow-list = ["dcmqi_python_distributions ._core"]
+extension-pkg-allow-list = []
 reports.output-format = "colorized"
 similarities.ignore-imports = "yes"
 messages_control.disable = [
