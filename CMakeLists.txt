@@ -4,27 +4,6 @@
 cmake_minimum_required(VERSION 3.15...3.26)
 project(${SKBUILD_PROJECT_NAME} LANGUAGES NONE)
 
-function(_check_archive dest_file expected_sha256 output_var)
-  get_filename_component(filename ${dest_file} NAME)
-  message(STATUS "Checking ${filename}")
-
-  if(NOT EXISTS ${dest_file})
-    message(STATUS "Checking ${filename} - nonexistent")
-    set(${output_var} "nonexistent" PARENT_SCOPE)
-    return()
-  endif()
-
-  file(SHA256 ${dest_file} current_hash)
-  if(NOT ${current_hash} STREQUAL ${expected_sha256})
-    message(STATUS "Checking ${filename} - expired")
-    set(${output_var} "expired" PARENT_SCOPE)
-    return()
-  endif()
-
-  message(STATUS "Checking ${filename} - up-to-date")
-  set(${output_var} "ok" PARENT_SCOPE)
-endfunction()
-
 # Set in the current scope the following variables:
 # - dcmqi_archive_url
 # - dcmqi_archive_sha256

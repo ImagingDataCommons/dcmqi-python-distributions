@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from importlib.metadata import distribution
 from pathlib import Path
 from typing import NoReturn
 
@@ -27,15 +28,19 @@ __all__ = [
 DCMQI_BIN_DIR: Path = Path(__file__).parent
 
 
+def _lookup(name: str) -> Path:
+    executable_path = f"dcmqi/bin/{name}"
+    files = distribution("dcmqi").files
+    if files is not None:
+        for _file in files:
+            if str(_file).startswith(executable_path):
+                return Path(_file.locate()).resolve(strict=True)
+    msg = f"Failed to lookup '{executable_path}` directory."
+    raise FileNotFoundError(msg)
+
+
 def _program(name: str, args: list[str]) -> int:
-    return subprocess.call([DCMQI_BIN_DIR / "bin" / name, *args], close_fds=False)
-
-
-# def s5cmd() -> NoReturn:
-#     """Run the s5cmd executable with arguments passed to a Python script."""
-#     raise SystemExit(_program("s5cmd", sys.argv[1:]))
-
-# NOTE: consider nested structure / class based approach for the various libraries
+    return subprocess.call([_lookup(name), *args], close_fds=False)
 
 
 def itkimage2segimage() -> NoReturn:

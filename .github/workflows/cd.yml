@@ -114,3 +114,6 @@ jobs:
           merge-multiple: true
 
       - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Remove this line to publish to PyPI
+          repository-url: https://test.pypi.org/legacy/
