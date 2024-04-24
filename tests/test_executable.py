@@ -16,6 +16,18 @@ import dcmqi
 
 from . import push_argv
 
+all_tools = pytest.mark.parametrize(
+    "tool",
+    [
+        "itkimage2segimage",
+        "segimage2itkimage",
+        "tid1500writer",
+        "tid1500reader",
+        "itkimage2paramap",
+        "paramap2itkimage",
+    ],
+)
+
 all_tools_version = pytest.mark.parametrize(
     "tool,expected_version",
     [
@@ -58,8 +70,8 @@ def test_package_script(tool, expected_version):
     assert output.splitlines()[2].split("  ")[1] == f"version: {expected_version}"
 
 
-@all_tools_version
-def test_module(tool, expected_version):
+@all_tools
+def test_module(tool):
     func = getattr(dcmqi, tool)
     args = [f"{tool}.py", "--version"]
     with push_argv(args), pytest.raises(SystemExit) as excinfo:
