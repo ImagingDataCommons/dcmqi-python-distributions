@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import subprocess
 import sys
 import sysconfig
@@ -14,14 +16,18 @@ import dcmqi
 
 from . import push_argv
 
-all_tools_version = pytest.mark.parametrize("tool,expected_version", [
-  ("itkimage2segimage", "1.0"), 
-  ("segimage2itkimage", "1.0"), 
-  ("tid1500writer", "1.0"), 
-  ("tid1500reader", "1.0"), 
-  ("itkimage2paramap", "1.0"), 
-  ("paramap2itkimage", "1.0")]
+all_tools_version = pytest.mark.parametrize(
+    "tool,expected_version",
+    [
+        ("itkimage2segimage", "1.0"),
+        ("segimage2itkimage", "1.0"),
+        ("tid1500writer", "1.0"),
+        ("tid1500reader", "1.0"),
+        ("itkimage2paramap", "1.0"),
+        ("paramap2itkimage", "1.0"),
+    ],
 )
+
 
 def _get_scripts():
     dist = distribution("dcmqi")
@@ -40,7 +46,7 @@ def _get_scripts():
 def test_package_script(tool, expected_version):
     """
     Example of the output for tid1500writer (analogous for the other tools):
-    
+
     tid1500writer --version
     dcmqi repository URL: https://github.com/QIICR/dcmqi revision: 1922a09 tag: v1.3.1
 
@@ -50,7 +56,8 @@ def test_package_script(tool, expected_version):
     assert len(scripts) == 1
     output = subprocess.check_output([str(scripts[0]), "--version"]).decode("ascii")
     assert output.splitlines()[2].split("  ")[1] == f"version: {expected_version}"
-    
+
+
 @all_tools_version
 def test_module(tool, expected_version):
     func = getattr(dcmqi, tool)
