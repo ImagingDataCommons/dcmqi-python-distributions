@@ -69,3 +69,34 @@ jobs:
       #   uses: codecov/codecov-action@v4.1.0
       #   with:
       #     token: ${{ secrets.CODECOV_TOKEN }}
+
+  checks-cibw:
+    name: >
+      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }} (${{
+      matrix.arch }})
+    runs-on: ${{ matrix.runs-on }}
+    needs: [pre-commit]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runs-on: macos-14
+            python-version: cp312
+            arch: "arm64"
+
+          - runs-on: windows-latest
+            python-version: cp312
+            arch: "ARM64"
+            test-skip: "*-win_arm64"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "${{ matrix.python-version }}-*"
+          CIBW_ARCHS: "${{ matrix.arch }}"
+          CIBW_TEST_SKIP: "${{ matrix.test-skip }}"
+          CIBW_SKIP: "*musllinux*"
