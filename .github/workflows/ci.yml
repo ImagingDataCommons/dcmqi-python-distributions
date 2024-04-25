@@ -47,6 +47,13 @@ jobs:
           - python-version: pypy-3.10
             runs-on: ubuntu-latest
 
+          - python-version: "3.10"
+            runs-on: macos-latest
+
+        exclude:
+          - python-version: "3.8"
+            runs-on: macos-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,8 +79,7 @@ jobs:
 
   checks-cibw:
     name: >
-      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }} (${{
-      matrix.arch }})
+      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }} (${{matrix.arch }})
     runs-on: ${{ matrix.runs-on }}
     needs: [pre-commit]
     strategy:
