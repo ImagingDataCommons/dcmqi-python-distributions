@@ -79,7 +79,7 @@ jobs:
 
   checks-cibw:
     name: >
-      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }} 
+      Check Python ${{ matrix.python-version }} on ${{ matrix.runs-on }}
       (${{matrix.arch }})
     runs-on: ${{ matrix.runs-on }}
     needs: [pre-commit]
