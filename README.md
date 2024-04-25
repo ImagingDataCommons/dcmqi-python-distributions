@@ -33,12 +33,12 @@ configuration defined in the `pyproject.toml` file.
 
 The following platforms are supported by the binary wheels:
 
-| OS           | Arch             |
-| ------------ | ---------------- |
-| Windows      | 64-bit           |
-| Linux Intel  | manylinux 64-bit |
-| macOS 10.10+ | Intel            |
-| macOS 11+    | Apple Silicon    |
+| OS           | Arch               |
+| ------------ | ------------------ |
+| Windows      | 64-bit <br/> ARM64 |
+| Linux Intel  | manylinux 64-bit   |
+| macOS 10.10+ | Intel              |
+| macOS 11+    | Apple Silicon      |
 
 ## License
 
