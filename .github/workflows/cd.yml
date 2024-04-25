@@ -80,7 +80,7 @@ jobs:
       - run: pipx run twine check --strict all/*/*
 
   build_wheels:
-    name: Wheel on ${{ matrix.os }}
+    name: Wheel on ${{ matrix.os }} (${{ matrix.arch }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -90,7 +90,6 @@ jobs:
         include:
           - os: ubuntu-latest
             skip: "*musllinux*"
-            arch: "x86_64"
 
           - os: windows-latest
             arch: "ARM64"
@@ -98,6 +97,10 @@ jobs:
 
           - os: macos-14
             arch: "arm64"
+
+        exclude:
+          - os: windows-latest
+            arch: "i686"
 
     steps:
       - uses: actions/checkout@v4
