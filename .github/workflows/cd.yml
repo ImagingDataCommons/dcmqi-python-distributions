@@ -90,6 +90,7 @@ jobs:
         include:
           - os: ubuntu-latest
             skip: "*musllinux*"
+            arch: "x86_64"
 
           - os: windows-latest
             arch: "ARM64"
@@ -99,8 +100,8 @@ jobs:
             arch: "arm64"
 
         exclude:
-          - os: windows-latest
-            arch: "i686"
+          - os: ubuntu-latest
+            arch: "auto"
 
     steps:
       - uses: actions/checkout@v4
