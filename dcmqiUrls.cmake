@@ -1,15 +1,15 @@
 # Checksum copied from "dcmqi_checksums.txt" associated with the dcmqi GitHub release
 
-set(version "1.3.1")
+set(version "1.3.2")
 
 set(linux_filename    "dcmqi-${version}-linux.tar.gz")
-set(linux_sha256      "b119f1d292f3214203e5812fadbc527282400eed8342431539411d62fcc91c89")
+set(linux_sha256      "bdeb99a05465e568629a7e9f72903e3f3c108ab756856f4f5e1c1a714df7c609")
 
 set(macos_filename    "dcmqi-${version}-mac.tar.gz")
-set(macos_sha256      "24ed2dcce2cfe918e17c889e22505c679c73263eab247ad291e19ab8b26ebf5a")
+set(macos_sha256      "07f785318c3b73af73fed5919080481ef1580dbfdbde2a1aec272736848cc417")
 
 set(win64_filename    "dcmqi-${version}-win64.zip")
-set(win64_sha256      "141a3f713ace11bc956818d34af6a923f92d3dcaaf0675c1c88db75f2ac221f4")
+set(win64_sha256      "e5a5328743f8128517f21b0ea1e20fd68b2844908f7349a5b40d7b0aa9af7374")
 
 
 cmake_host_system_information(RESULT is_64bit QUERY IS_64BIT)
