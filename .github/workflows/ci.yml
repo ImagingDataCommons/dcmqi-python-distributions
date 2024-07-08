@@ -101,7 +101,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pypa/cibuildwheel@v2.17.0
+      - uses: pypa/cibuildwheel@v2.19.2
         env:
           CIBW_BUILD: "${{ matrix.python-version }}-*"
           CIBW_ARCHS: "${{ matrix.arch }}"
