@@ -49,10 +49,9 @@ covered by the OSI-approved MIT License.
 regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 
 <!-- prettier-ignore-start -->
-[actions-badge]:            https://github.com/ImagingDataCommons/dcmqi-python-distributions/workflows/CI/badge.svg
-[actions-link]:             https://github.com/ImagingDataCommons/dcmqi-python-distributions/actions
+[actions-badge]:            https://github.com/ImagingDataCommons/dcmqi-python-distributions/actions/workflows/ci.yml/badge.svg?branch=main
+[actions-link]:             https://github.com/ImagingDataCommons/dcmqi-python-distributions/actions/workflows/ci.yml
 [pypi-link]:                https://pypi.org/project/dcmqi/
 [pypi-platforms]:           https://img.shields.io/pypi/pyversions/dcmqi
 [pypi-version]:             https://img.shields.io/pypi/v/dcmqi
-
 <!-- prettier-ignore-end -->
