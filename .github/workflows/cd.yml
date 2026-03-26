@@ -114,6 +114,7 @@ jobs:
           CIBW_ARCHS: "${{ matrix.arch }}"
           CIBW_TEST_SKIP: "${{ matrix.test-skip }}"
           CIBW_SKIP: ${{ matrix.skip }}
+          CIBW_ENVIRONMENT_MACOS: "MACOSX_DEPLOYMENT_TARGET=13.0"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
