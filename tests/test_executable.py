@@ -1,16 +1,11 @@
 from __future__ import annotations
 
 import subprocess
-import sys
 import sysconfig
+from importlib.metadata import distribution
 from pathlib import Path
 
 import pytest
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import distribution
-else:
-    from importlib.metadata import distribution
 
 import dcmqi
 
