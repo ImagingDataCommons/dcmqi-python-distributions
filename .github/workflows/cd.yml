@@ -92,10 +92,6 @@ jobs:
             skip: "*musllinux*"
             arch: "x86_64"
 
-          - os: windows-latest
-            arch: "ARM64"
-            test-skip: "*-win_arm64"
-
           - os: macos-14
             arch: "arm64"
 
@@ -112,7 +108,6 @@ jobs:
         env:
           CIBW_BUILD: "cp312-*"
           CIBW_ARCHS: "${{ matrix.arch }}"
-          CIBW_TEST_SKIP: "${{ matrix.test-skip }}"
           CIBW_SKIP: ${{ matrix.skip }}
           CIBW_ENVIRONMENT_MACOS: "MACOSX_DEPLOYMENT_TARGET=13.0"
 
