@@ -57,4 +57,5 @@ regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 
 ## Acknowledgments
 
-This software is maintained by the IDC team, which has been funded in whole or in part with Federal funds from the NCI, NIH, under task order no. HHSN26110071 under contract no. HHSN261201500003I.
+This software is maintained by the IDC team, which has been funded in whole or in part with 
+Federal funds from the NCI, NIH, under task order no. HHSN26110071 under contract no. HHSN261201500003I.
