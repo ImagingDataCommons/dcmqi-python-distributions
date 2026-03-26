@@ -33,19 +33,19 @@ configuration defined in the `pyproject.toml` file.
 
 The following platforms are supported by the binary wheels:
 
-| OS           | Arch               |
-| ------------ | ------------------ |
-| Linux Intel  | manylinux 64-bit   |
-| macOS 10.10+ | Intel              |
-| macOS 11+    | Apple Silicon      |
+| OS           | Arch             |
+| ------------ | ---------------- |
+| Linux Intel  | manylinux 64-bit |
+| macOS 10.10+ | Intel            |
+| macOS 11+    | Apple Silicon    |
 
 ## License
 
-This project is maintained by the Imaging Data Commons team. It is
-covered by the OSI-approved MIT License.
+This project is maintained by the Imaging Data Commons team. It is covered by
+the OSI-approved MIT License.
 
-`dcmqi` is distributed under the OSI-approved BSD 3-Clause License. For further details
-regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
+`dcmqi` is distributed under the OSI-approved BSD 3-Clause License. For further
+details regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 
 <!-- prettier-ignore-start -->
 [actions-badge]:            https://github.com/ImagingDataCommons/dcmqi-python-distributions/actions/workflows/ci.yml/badge.svg?branch=main
@@ -57,4 +57,6 @@ regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 
 ## Acknowledgments
 
-This software is maintained by the IDC team, which has been funded in whole or in part with Federal funds from the NCI, NIH, under task order no. HHSN26110071 under contract no. HHSN261201500003I.
+This software is maintained by the IDC team, which has been funded in whole or
+in part with Federal funds from the NCI, NIH, under task order no. HHSN26110071
+under contract no. HHSN261201500003I.
