@@ -35,17 +35,16 @@ The following platforms are supported by the binary wheels:
 
 | OS           | Arch               |
 | ------------ | ------------------ |
-| Windows      | 64-bit <br/> ARM64 |
 | Linux Intel  | manylinux 64-bit   |
 | macOS 10.10+ | Intel              |
 | macOS 11+    | Apple Silicon      |
 
 ## License
 
-This project is maintained by Leonard Nürnberg, Mass General Brigham. It is
+This project is maintained by the Imaging Data Commons team. It is
 covered by the OSI-approved MIT License.
 
-`dcmqi` is distributed under the OSI-approved MIT License. For further details
+`dcmqi` is distributed under the OSI-approved BSD 3-Clause License. For further details
 regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 
 <!-- prettier-ignore-start -->
@@ -55,3 +54,7 @@ regarding `dcmqi`, please visit https://github.com/QIICR/dcmqi.
 [pypi-platforms]:           https://img.shields.io/pypi/pyversions/dcmqi
 [pypi-version]:             https://img.shields.io/pypi/v/dcmqi
 <!-- prettier-ignore-end -->
+
+## Acknowledgments
+
+This software is maintained by the IDC team, which has been funded in whole or in part with Federal funds from the NCI, NIH, under task order no. HHSN26110071 under contract no. HHSN261201500003I.
