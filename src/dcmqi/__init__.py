@@ -16,12 +16,12 @@ from ._version import version as __version__
 
 __all__ = [
     "__version__",
-    "itkimage2segimage",
-    "segimage2itkimage",
-    "tid1500writer",
-    "tid1500reader",
     "itkimage2paramap",
+    "itkimage2segimage",
     "paramap2itkimage",
+    "segimage2itkimage",
+    "tid1500reader",
+    "tid1500writer",
 ]
 
 
