@@ -24,7 +24,7 @@ all_tools = pytest.mark.parametrize(
 )
 
 all_tools_version = pytest.mark.parametrize(
-    "tool,expected_version",
+    ("tool","expected_version"),
     [
         ("itkimage2segimage", "1.0"),
         ("segimage2itkimage", "1.0"),
