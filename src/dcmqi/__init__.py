@@ -36,7 +36,9 @@ def _make_wrapper(name: str):
 
     _wrapper.__name__ = name
     _wrapper.__qualname__ = name
-    _wrapper.__doc__ = f"Run the {name} executable with arguments passed to a Python script."
+    _wrapper.__doc__ = (
+        f"Run the {name} executable with arguments passed to a Python script."
+    )
     return _wrapper
 
 
