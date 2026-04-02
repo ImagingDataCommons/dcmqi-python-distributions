@@ -10,7 +10,7 @@ import subprocess
 import sys
 from importlib.metadata import distribution
 from pathlib import Path
-from typing import NoReturn
+from typing import Callable, NoReturn
 
 from ._version import version as __version__
 
@@ -30,7 +30,7 @@ def _program(name: str, args: list[str]) -> int:
     return subprocess.call([_lookup(name), *args], close_fds=False)
 
 
-def _make_wrapper(name: str):
+def _make_wrapper(name: str) -> Callable[[], NoReturn]:
     def _wrapper() -> NoReturn:
         raise SystemExit(_program(name, sys.argv[1:]))
 
@@ -62,4 +62,4 @@ _binaries = _discover_binaries()
 for _name in _binaries:
     globals()[_name] = _make_wrapper(_name)
 
-__all__ = ["__version__", *_binaries]
+__all__ = ["__version__", *_binaries]  # noqa: PLE0604

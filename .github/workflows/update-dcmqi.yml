@@ -161,17 +161,7 @@ jobs:
           echo "$binaries" > binaries.txt
 
           # Update pyproject.toml [project.scripts] to match binaries.txt
-          python3 - <<PYEOF
-import re
-
-binaries = open("binaries.txt").read().split()
-scripts_block = "[project.scripts]\n" + "".join(
-    f'{b} = "dcmqi:{b}"\n' for b in binaries
-)
-content = open("pyproject.toml").read()
-content = re.sub(r"\[project\.scripts\]\n[^\[]*", scripts_block + "\n", content)
-open("pyproject.toml", "w").write(content)
-PYEOF
+          python3 -c 'import re; b=open("binaries.txt").read().split(); blk="[project.scripts]\n"+"".join(f"{x} = \"dcmqi:{x}\"\n" for x in b)+"\n"; c=open("pyproject.toml").read(); open("pyproject.toml","w").write(re.sub(r"\[project\.scripts\]\n[^\[]*\n",blk,c))'
 
           # Update README.md to reference the new dcmqi release version
           sed -i "s|dcmqi v${current_version}](https://github.com/QIICR/dcmqi/releases/tag/v${current_version})|dcmqi v${latest_version}](https://github.com/QIICR/dcmqi/releases/tag/v${latest_version})|" README.md
