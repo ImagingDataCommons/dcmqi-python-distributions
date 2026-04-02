@@ -29,15 +29,21 @@ placed in the PATH for each of the above mentioned libraries. This launcher is
 created during installation by pip, leveraging the `[project.scripts]`
 configuration defined in the `pyproject.toml` file.
 
+## Packaged dcmqi version
+
+This package wraps the official
+[dcmqi v1.5.3](https://github.com/QIICR/dcmqi/releases/tag/v1.5.3) release.
+
 ## Platforms
 
 The following platforms are supported by the binary wheels:
 
-| OS           | Arch             |
-| ------------ | ---------------- |
-| Linux Intel  | manylinux 64-bit |
-| macOS 10.10+ | Intel            |
-| macOS 11+    | Apple Silicon    |
+| OS          | Arch             |
+| ----------- | ---------------- |
+| Linux Intel | manylinux 64-bit |
+| macOS 13+   | Apple Silicon    |
+| macOS 15+   | Intel            |
+| Windows     | 64-bit           |
 
 ## License
 
