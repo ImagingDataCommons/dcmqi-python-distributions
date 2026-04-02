@@ -61,6 +61,7 @@ tid1500writer = "dcmqi:tid1500writer"
 tid1500reader = "dcmqi:tid1500reader"
 itkimage2paramap = "dcmqi:itkimage2paramap"
 paramap2itkimage = "dcmqi:paramap2itkimage"
+bin2labelsegimage = "dcmqi:bin2labelsegimage"
 
 [tool.scikit-build]
 minimum-version = "0.4"
