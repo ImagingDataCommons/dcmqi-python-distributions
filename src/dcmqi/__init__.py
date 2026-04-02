@@ -8,9 +8,10 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from collections.abc import Callable
 from importlib.metadata import distribution
 from pathlib import Path
-from typing import Callable, NoReturn
+from typing import NoReturn
 
 from ._version import version as __version__
 
