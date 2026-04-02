@@ -8,24 +8,12 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from collections.abc import Callable
 from importlib.metadata import distribution
 from pathlib import Path
 from typing import NoReturn
 
 from ._version import version as __version__
-
-__all__ = [
-    "__version__",
-    "itkimage2paramap",
-    "itkimage2segimage",
-    "paramap2itkimage",
-    "segimage2itkimage",
-    "tid1500reader",
-    "tid1500writer",
-]
-
-
-DCMQI_BIN_DIR: Path = Path(__file__).parent
 
 
 def _lookup(name: str) -> Path:
@@ -43,31 +31,36 @@ def _program(name: str, args: list[str]) -> int:
     return subprocess.call([_lookup(name), *args], close_fds=False)
 
 
-def itkimage2segimage() -> NoReturn:
-    """Run the itkimage2segimage executable with arguments passed to a Python script."""
-    raise SystemExit(_program("itkimage2segimage", sys.argv[1:]))
+def _make_wrapper(name: str) -> Callable[[], NoReturn]:
+    def _wrapper() -> NoReturn:
+        raise SystemExit(_program(name, sys.argv[1:]))
+
+    _wrapper.__name__ = name
+    _wrapper.__qualname__ = name
+    _wrapper.__doc__ = (
+        f"Run the {name} executable with arguments passed to a Python script."
+    )
+    return _wrapper
 
 
-def segimage2itkimage() -> NoReturn:
-    """Run the segimage2itkimage executable with arguments passed to a Python script."""
-    raise SystemExit(_program("segimage2itkimage", sys.argv[1:]))
+def _discover_binaries() -> list[str]:
+    """Return names of all executables installed in dcmqi/bin/."""
+    files = distribution("dcmqi").files
+    if files is None:
+        return []
+    binaries = []
+    for _file in files:
+        parts = Path(str(_file)).parts
+        if len(parts) == 3 and parts[0] == "dcmqi" and parts[1] == "bin":
+            # Strip platform suffix (.exe on Windows)
+            name = Path(parts[2]).stem
+            binaries.append(name)
+    return sorted(binaries)
 
 
-def tid1500writer() -> NoReturn:
-    """Run the tid1500writer executable with arguments passed to a Python script."""
-    raise SystemExit(_program("tid1500writer", sys.argv[1:]))
+# Dynamically create wrapper functions for each installed binary
+_binaries = _discover_binaries()
+for _name in _binaries:
+    globals()[_name] = _make_wrapper(_name)
 
-
-def tid1500reader() -> NoReturn:
-    """Run the tid1500reader executable with arguments passed to a Python script."""
-    raise SystemExit(_program("tid1500reader", sys.argv[1:]))
-
-
-def itkimage2paramap() -> NoReturn:
-    """Run the itkimage2paramap executable with arguments passed to a Python script."""
-    raise SystemExit(_program("itkimage2paramap", sys.argv[1:]))
-
-
-def paramap2itkimage() -> NoReturn:
-    """Run the paramap2itkimage executable with arguments passed to a Python script."""
-    raise SystemExit(_program("paramap2itkimage", sys.argv[1:]))
+__all__ = ["__version__", *_binaries]  # noqa: PLE0604

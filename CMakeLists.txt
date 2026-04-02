@@ -32,16 +32,8 @@ set(_permissions PERMISSIONS
   WORLD_READ WORLD_EXECUTE
   )
 
-set(itkimage2segimage_executable_name "itkimage2segimage${CMAKE_EXECUTABLE_SUFFIX}")
-set(segimage2itkimage_executable_name "segimage2itkimage${CMAKE_EXECUTABLE_SUFFIX}")
-set(tid1500writer_executable_name "tid1500writer${CMAKE_EXECUTABLE_SUFFIX}")
-set(tid1500reader_executable_name "tid1500reader${CMAKE_EXECUTABLE_SUFFIX}")
-set(itkimage2paramap_executable_name "itkimage2paramap${CMAKE_EXECUTABLE_SUFFIX}")
-set(paramap2itkimage_executable_name "paramap2itkimage${CMAKE_EXECUTABLE_SUFFIX}")
+file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/binaries.txt" _dcmqi_binaries)
 
-install(PROGRAMS ${extract_dir}/bin/${itkimage2segimage_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
-install(PROGRAMS ${extract_dir}/bin/${segimage2itkimage_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
-install(PROGRAMS ${extract_dir}/bin/${tid1500writer_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
-install(PROGRAMS ${extract_dir}/bin/${tid1500reader_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
-install(PROGRAMS ${extract_dir}/bin/${itkimage2paramap_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
-install(PROGRAMS ${extract_dir}/bin/${paramap2itkimage_executable_name} DESTINATION "dcmqi/bin" ${_permissions})
+foreach(_binary IN LISTS _dcmqi_binaries)
+  install(PROGRAMS "${extract_dir}/bin/${_binary}${CMAKE_EXECUTABLE_SUFFIX}" DESTINATION "dcmqi/bin" ${_permissions})
+endforeach()

@@ -50,14 +50,31 @@ jobs:
           echo "Assets: $assets"
 
           # Download assets and compute checksums
+          # Also extract binary names from one archive (Linux)
           declare -A checksums
+          binaries=""
           for asset in $assets; do
             echo "Downloading $asset..."
             url="https://github.com/QIICR/dcmqi/releases/download/$latest_tag/$asset"
-            sha256=$(curl -sL "$url" | sha256sum | awk '{print $1}')
+            tmpfile=$(mktemp)
+            curl -sL "$url" -o "$tmpfile"
+            sha256=$(sha256sum "$tmpfile" | awk '{print $1}')
             checksums["$asset"]="$sha256"
             echo "  SHA256: $sha256"
+
+            # Discover binaries from the Linux archive
+            if [[ "$asset" == *-linux.tar.gz ]] && [ -z "$binaries" ]; then
+              echo "Discovering binaries from $asset..."
+              binaries=$(tar -tzf "$tmpfile" | grep '^[^/]*/bin/[^/]*$' | grep -v '/$' | sed 's|.*/bin/||' | sort)
+              echo "  Discovered binaries: $(echo $binaries | tr '\n' ' ')"
+            fi
+            rm -f "$tmpfile"
           done
+
+          if [ -z "$binaries" ]; then
+            echo "ERROR: Could not discover binaries from Linux archive"
+            exit 1
+          fi
 
           # Determine macOS asset pattern
           has_mac_split=false
@@ -140,6 +157,12 @@ jobs:
             echo 'set(dcmqi_archive_url "https://github.com/QIICR/dcmqi/releases/download/v${version}/${dcmqi_archive_filename}")'
           } > dcmqiUrls.cmake
 
+          # Update binaries.txt with discovered binary list
+          echo "$binaries" > binaries.txt
+
+          # Update pyproject.toml [project.scripts] to match binaries.txt
+          python3 -c 'import re; b=open("binaries.txt").read().split(); blk="[project.scripts]\n"+"".join(f"{x} = \"dcmqi:{x}\"\n" for x in b)+"\n"; c=open("pyproject.toml").read(); open("pyproject.toml","w").write(re.sub(r"\[project\.scripts\]\n[^\[]*\n",blk,c))'
+
           # Update README.md to reference the new dcmqi release version
           sed -i "s|dcmqi v${current_version}](https://github.com/QIICR/dcmqi/releases/tag/v${current_version})|dcmqi v${latest_version}](https://github.com/QIICR/dcmqi/releases/tag/v${latest_version})|" README.md
 
@@ -149,7 +172,7 @@ jobs:
 
           branch="dcmqi-v${latest_version}"
           git checkout -b "$branch"
-          git add dcmqiUrls.cmake README.md
+          git add dcmqiUrls.cmake binaries.txt pyproject.toml README.md
           git commit -m "feat: update dcmqi from version v$current_version to v$latest_version"
           git push origin "$branch"
 
