@@ -11,28 +11,16 @@ import dcmqi
 
 from . import push_argv
 
-all_tools = pytest.mark.parametrize(
-    "tool",
-    [
-        "itkimage2segimage",
-        "segimage2itkimage",
-        "tid1500writer",
-        "tid1500reader",
-        "itkimage2paramap",
-        "paramap2itkimage",
-    ],
+_BINARIES_FILE = Path(__file__).parent.parent / "binaries.txt"
+_EXPECTED_TOOLS = sorted(
+    line.strip() for line in _BINARIES_FILE.read_text().splitlines() if line.strip()
 )
+
+all_tools = pytest.mark.parametrize("tool", _EXPECTED_TOOLS)
 
 all_tools_version = pytest.mark.parametrize(
     ("tool", "expected_version"),
-    [
-        ("itkimage2segimage", "1.0"),
-        ("segimage2itkimage", "1.0"),
-        ("tid1500writer", "1.0"),
-        ("tid1500reader", "1.0"),
-        ("itkimage2paramap", "1.0"),
-        ("paramap2itkimage", "1.0"),
-    ],
+    [(t, "1.0") for t in _EXPECTED_TOOLS],
 )
 
 
