@@ -140,13 +140,16 @@ jobs:
             echo 'set(dcmqi_archive_url "https://github.com/QIICR/dcmqi/releases/download/v${version}/${dcmqi_archive_filename}")'
           } > dcmqiUrls.cmake
 
+          # Update README.md to reference the new dcmqi release version
+          sed -i "s|dcmqi v${current_version}](https://github.com/QIICR/dcmqi/releases/tag/v${current_version})|dcmqi v${latest_version}](https://github.com/QIICR/dcmqi/releases/tag/v${latest_version})|" README.md
+
           # Configure git and create branch
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           branch="dcmqi-v${latest_version}"
           git checkout -b "$branch"
-          git add dcmqiUrls.cmake
+          git add dcmqiUrls.cmake README.md
           git commit -m "feat: update dcmqi from version v$current_version to v$latest_version"
           git push origin "$branch"
 
