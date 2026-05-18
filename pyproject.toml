@@ -55,13 +55,20 @@ Changelog = "https://github.com/ImagingDataCommons/dcmqi-python-distributions/re
 
 
 [project.scripts]
-itkimage2segimage = "dcmqi:itkimage2segimage"
-segimage2itkimage = "dcmqi:segimage2itkimage"
-tid1500writer = "dcmqi:tid1500writer"
-tid1500reader = "dcmqi:tid1500reader"
-itkimage2paramap = "dcmqi:itkimage2paramap"
-paramap2itkimage = "dcmqi:paramap2itkimage"
 bin2labelsegimage = "dcmqi:bin2labelsegimage"
+bin2labelsegimage.xml = "dcmqi:bin2labelsegimage.xml"
+itkimage2paramap = "dcmqi:itkimage2paramap"
+itkimage2paramap.xml = "dcmqi:itkimage2paramap.xml"
+itkimage2segimage = "dcmqi:itkimage2segimage"
+itkimage2segimage.xml = "dcmqi:itkimage2segimage.xml"
+paramap2itkimage = "dcmqi:paramap2itkimage"
+paramap2itkimage.xml = "dcmqi:paramap2itkimage.xml"
+segimage2itkimage = "dcmqi:segimage2itkimage"
+segimage2itkimage.xml = "dcmqi:segimage2itkimage.xml"
+tid1500reader = "dcmqi:tid1500reader"
+tid1500reader.xml = "dcmqi:tid1500reader.xml"
+tid1500writer = "dcmqi:tid1500writer"
+tid1500writer.xml = "dcmqi:tid1500writer.xml"
 
 [tool.scikit-build]
 minimum-version = "0.4"

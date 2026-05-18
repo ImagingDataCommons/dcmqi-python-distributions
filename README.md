@@ -32,7 +32,7 @@ configuration defined in the `pyproject.toml` file.
 ## Packaged dcmqi version
 
 This package wraps the official
-[dcmqi v1.5.3](https://github.com/QIICR/dcmqi/releases/tag/v1.5.3) release.
+[dcmqi v1.5.4](https://github.com/QIICR/dcmqi/releases/tag/v1.5.4) release.
 
 ## Platforms
 
