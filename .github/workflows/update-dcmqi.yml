@@ -65,7 +65,7 @@ jobs:
             # Discover binaries from the Linux archive
             if [[ "$asset" == *-linux.tar.gz ]] && [ -z "$binaries" ]; then
               echo "Discovering binaries from $asset..."
-              binaries=$(tar -tzf "$tmpfile" | grep '^[^/]*/bin/[^/]*$' | grep -v '/$' | sed 's|.*/bin/||' | sort)
+              binaries=$(tar -tzf "$tmpfile" | grep '^[^/]*/bin/[^/]*$' | grep -v '/$' | grep -v '\.xml$' | sed 's|.*/bin/||' | sort)
               echo "  Discovered binaries: $(echo $binaries | tr '\n' ' ')"
             fi
             rm -f "$tmpfile"
