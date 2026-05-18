@@ -1,14 +1,7 @@
 bin2labelsegimage
-bin2labelsegimage.xml
 itkimage2paramap
-itkimage2paramap.xml
 itkimage2segimage
-itkimage2segimage.xml
 paramap2itkimage
-paramap2itkimage.xml
 segimage2itkimage
-segimage2itkimage.xml
 tid1500reader
-tid1500reader.xml
 tid1500writer
-tid1500writer.xml
