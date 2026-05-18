@@ -1,18 +1,18 @@
 # Checksums computed from assets associated with the dcmqi GitHub release
 
-set(version "1.5.3")
+set(version "1.5.4")
 
-set(linux_filename        "dcmqi-1.5.3-linux.tar.gz")
-set(linux_sha256          "bb56072bd5c01005fc7ceaefb9c0010320d7fb0e25e0138ccaa102393b798821")
+set(linux_filename        "dcmqi-1.5.4-linux.tar.gz")
+set(linux_sha256          "efa6c64147e8597020471241eab04b442575cae553772a22ab5b0ff477169c43")
 
-set(macos_arm64_filename  "dcmqi-1.5.3-mac-arm64.tar.gz")
-set(macos_arm64_sha256    "edc3426eb551b8f2ae995c2a1ea099812589eda923dcd8a6ece8fd3b7cbe4947")
+set(macos_arm64_filename  "dcmqi-1.5.4-mac-arm64.tar.gz")
+set(macos_arm64_sha256    "f0b48112838ae70fd9380fd607d0ed945f152ebcc5ed80f035540a676fe9cfd3")
 
-set(macos_x86_64_filename "dcmqi-1.5.3-mac-x86_64.tar.gz")
-set(macos_x86_64_sha256   "3fb3bb20ccf04f3658b13fd06a11bce7c6f5b40b3495b179353274a3af202966")
+set(macos_x86_64_filename "dcmqi-1.5.4-mac-x86_64.tar.gz")
+set(macos_x86_64_sha256   "ec4d3893497a523c145096483718534c9a4ff6942bad30262d999197693ff4e0")
 
-set(win64_filename        "dcmqi-1.5.3-win64.zip")
-set(win64_sha256          "48a52a505c8b371be57168e56b33d903955736c76a6f57c232f9b2762088743d")
+set(win64_filename        "dcmqi-1.5.4-win64.zip")
+set(win64_sha256          "cf966ebe902a8b6c4e592c428158d8c1e0938727d8ed46078fb2f9ced6e40d48")
 
 
 cmake_host_system_information(RESULT is_64bit QUERY IS_64BIT)
