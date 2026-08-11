@@ -92,6 +92,12 @@ jobs:
             skip: "*musllinux*"
             arch: "x86_64"
 
+          # cibuildwheel's "auto" on Windows means AMD64 *and* x86, but dcmqi publishes no
+          # 32-bit binaries. The win32 wheel it produced could therefore only ever contain
+          # the 64-bit ones, so the architecture is pinned rather than probed.
+          - os: windows-latest
+            arch: "AMD64"
+
           - os: macos-14
             arch: "arm64"
 
@@ -100,6 +106,9 @@ jobs:
 
         exclude:
           - os: ubuntu-latest
+            arch: "auto"
+
+          - os: windows-latest
             arch: "auto"
 
     steps:

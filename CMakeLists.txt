@@ -4,10 +4,12 @@
 cmake_minimum_required(VERSION 3.15...3.26)
 project(${SKBUILD_PROJECT_NAME} LANGUAGES NONE)
 
-# Set in the current scope the following variables:
+# dcmqiUrls.cmake is generated: it lists every published asset and its checksum.
+# dcmqiArchive.cmake then picks the one matching this build and sets in the current scope:
 # - dcmqi_archive_url
 # - dcmqi_archive_sha256
 include(${CMAKE_CURRENT_SOURCE_DIR}/dcmqiUrls.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/dcmqiArchive.cmake)
 
 #
 # Download & extract archive
