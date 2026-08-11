@@ -79,11 +79,15 @@ foreach(_dcmqi_candidate IN LISTS _dcmqi_candidates)
 endforeach()
 
 if(NOT archive)
-  string(REPLACE ";" ", " _dcmqi_tried "${_dcmqi_candidates}")
+  set(_dcmqi_tried "")
+  foreach(_dcmqi_candidate IN LISTS _dcmqi_candidates)
+    list(APPEND _dcmqi_tried "${_dcmqi_candidate}_filename")
+  endforeach()
+  string(REPLACE ";" ", " _dcmqi_tried "${_dcmqi_tried}")
   message(FATAL_ERROR
     "dcmqi v${version} publishes no binary package for ${_dcmqi_platform}/${_dcmqi_arch}, so no "
-    "wheel can be built for it. Looked for the asset variables: ${_dcmqi_tried}. "
-    "Published assets: https://github.com/QIICR/dcmqi/releases/tag/v${version}")
+    "wheel can be built for it. Looked in dcmqiUrls.cmake for ${_dcmqi_tried} (and a matching "
+    "_sha256). Published assets: https://github.com/QIICR/dcmqi/releases/tag/v${version}")
 endif()
 
 set(dcmqi_archive_filename "${${archive}_filename}")
