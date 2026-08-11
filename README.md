@@ -32,7 +32,7 @@ configuration defined in the `pyproject.toml` file.
 ## Packaged dcmqi version
 
 This package wraps the official
-[dcmqi v1.5.6](https://github.com/QIICR/dcmqi/releases/tag/v1.5.6) release.
+[dcmqi v1.5.7](https://github.com/QIICR/dcmqi/releases/tag/v1.5.7) release.
 
 ## Platforms
 
@@ -41,6 +41,7 @@ The following platforms are supported by the binary wheels:
 | OS          | Arch             |
 | ----------- | ---------------- |
 | Linux Intel | manylinux 64-bit |
+| Linux Arm   | manylinux arm64  |
 | macOS 13+   | Apple Silicon    |
 | macOS 15+   | Intel            |
 | Windows     | 64-bit           |

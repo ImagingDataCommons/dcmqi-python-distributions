@@ -92,6 +92,14 @@ jobs:
             skip: "*musllinux*"
             arch: "x86_64"
 
+          # Native arm64 runner rather than QEMU on an x86_64 one: nothing is compiled here
+          # -- the wheel just repackages an upstream archive -- so emulation would buy
+          # nothing and cost a lot. musllinux is skipped for the same reason as above: the
+          # dcmqi binaries are linked against glibc.
+          - os: ubuntu-24.04-arm
+            skip: "*musllinux*"
+            arch: "aarch64"
+
           # cibuildwheel's "auto" on Windows means AMD64 *and* x86, but dcmqi publishes no
           # 32-bit binaries. The win32 wheel it produced could therefore only ever contain
           # the 64-bit ones, so the architecture is pinned rather than probed.
@@ -122,6 +130,11 @@ jobs:
           CIBW_ARCHS: "${{ matrix.arch }}"
           CIBW_SKIP: ${{ matrix.skip }}
           CIBW_ENVIRONMENT_MACOS: "MACOSX_DEPLOYMENT_TARGET=13.0"
+          # dcmqi builds its arm64 Linux package in manylinux_2_28_aarch64, and its binaries
+          # need glibc 2.28. Repairing them against an older image would fail rather than
+          # mistag, but pinning keeps the wheel's floor tied to how the binaries were built
+          # instead of to whatever cibuildwheel currently defaults to.
+          CIBW_MANYLINUX_AARCH64_IMAGE: "manylinux_2_28"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v7

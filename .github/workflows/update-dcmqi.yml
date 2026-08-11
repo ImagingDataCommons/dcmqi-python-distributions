@@ -76,11 +76,15 @@ jobs:
             exit 1
           fi
 
-          # Determine macOS asset pattern
+          # Which optional assets does this release publish? Both are probed rather than
+          # assumed, so this workflow keeps working against older releases: the macOS split
+          # into per-architecture archives arrived in dcmqi v1.5.1, arm64 Linux in v1.5.7.
           has_mac_split=false
+          has_linux_arm64=false
           for asset in $assets; do
             case "$asset" in
               *-mac-arm64*) has_mac_split=true ;;
+              *-linux-arm64*) has_linux_arm64=true ;;
             esac
           done
 
@@ -103,6 +107,13 @@ jobs:
             echo "set(linux_filename        \"$linux_file\")"
             echo "set(linux_sha256          \"${checksums[$linux_file]}\")"
             echo ''
+
+            if [ "$has_linux_arm64" = true ]; then
+              linux_arm64_file="dcmqi-${latest_version}-linux-arm64.tar.gz"
+              echo "set(linux_arm64_filename  \"$linux_arm64_file\")"
+              echo "set(linux_arm64_sha256    \"${checksums[$linux_arm64_file]}\")"
+              echo ''
+            fi
 
             # macOS
             if [ "$has_mac_split" = true ]; then
