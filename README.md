@@ -41,6 +41,7 @@ The following platforms are supported by the binary wheels:
 | OS          | Arch             |
 | ----------- | ---------------- |
 | Linux Intel | manylinux 64-bit |
+| Linux Arm   | manylinux arm64  |
 | macOS 13+   | Apple Silicon    |
 | macOS 15+   | Intel            |
 | Windows     | 64-bit           |
